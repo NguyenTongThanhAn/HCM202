@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #991a14;
+  background-color: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Color Variables */
+:root {
+  --color-primary: #991a14;
+  --color-secondary: #ffd321;
+  --color-light: #fff3e7;
+  --color-white: #ffffff;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background-color: #ffd321;
+  color: #991a14;
+}
+
+::-moz-selection {
+  background-color: #ffd321;
+  color: #991a14;
+}
