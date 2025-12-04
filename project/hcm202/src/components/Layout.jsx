@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Layout.css";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import ChatbotWidget from "./ChatbotWidget";
+import "./Layout.css";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -86,6 +90,8 @@ const Layout = ({ children }) => {
           <div className="footer-copyright"></div>
         </div>
       </footer>
+
+      <ChatbotWidget />
     </div>
   );
 };

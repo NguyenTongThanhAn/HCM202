@@ -6,28 +6,22 @@ const Essence = () => {
 
   const relations = [
     {
-      id: 'kinh-te',
-      title: 'Văn hóa với Kinh tế',
-      icon: '💰',
-      content: 'Văn hóa và kinh tế có mối quan hệ biện chứng, tác động qua lại lẫn nhau. Kinh tế là nền tảng vật chất, còn văn hóa là động lực tinh thần thúc đẩy phát triển kinh tế.'
-    },
-    {
       id: 'chinh-tri',
       title: 'Văn hóa với Chính trị',
       icon: '🏛️',
-      content: 'Văn hóa gắn liền với chính trị, phục vụ mục tiêu chính trị cách mạng. Văn hóa phải đi sâu vào tâm lý quốc dân, trở thành động lực xây dựng cuộc sống mới.'
+      content: 'Giải phóng chính trị để mở đường cho văn hóa phát triển. Văn hóa phải ở trong chính trị, phục vụ nhiệm vụ chính trị.'
+    },
+    {
+      id: 'kinh-te',
+      title: 'Văn hóa với Kinh tế',
+      icon: '💰',
+      content: 'Những cơ sở hạ tầng của xã hội có kiến thiết rồi, văn hóa mới kiến thiết được. Tuy nhiên, văn hóa có vai trò tác động tích cực trở lại kinh tế, là nguồn lực cho sự khai sáng.'
     },
     {
       id: 'xa-hoi',
       title: 'Văn hóa với Xã hội',
       icon: '👥',
-      content: 'Văn hóa là nền tảng tinh thần của xã hội, góp phần xây dựng con người mới, xã hội mới. Văn hóa phải phục vụ nhân dân, nâng cao dân trí.'
-    },
-    {
-      id: 'dao-duc',
-      title: 'Văn hóa với Đạo đức',
-      icon: '✨',
-      content: 'Văn hóa và đạo đức có mối quan hệ mật thiết. Văn hóa góp phần giáo dục đạo đức, hình thành nhân cách con người, xây dựng lối sống văn minh.'
+      content: 'Xã hội nào văn hóa thế ấy. Giải phóng xã hội là điều kiện tiên quyết để giải phóng và phát triển văn hóa.'
     }
   ]
 
@@ -47,8 +41,39 @@ const Essence = () => {
             <p>
               Khác với nhiều quan niệm đương thời thường bó hẹp văn hóa trong phạm vi văn học hay nghệ thuật, 
               Hồ Chí Minh tiếp cận văn hóa dưới một nhãn quan rộng mở và biện chứng. Để thấu hiểu trọn vẹn tư tưởng 
-              của Người, cần nhìn nhận văn hóa qua hệ quy chiếu đa chiều với 4 cách tiếp cận cốt lõi.
+              của Người, cần nhìn nhận văn hóa qua hệ quy chiếu đa chiều với 4 cách tiếp cận cốt lõi:
             </p>
+          </div>
+
+          <div className="approaches-grid">
+            <div className="approach-card">
+              <div className="approach-icon">🌍</div>
+              <h3 className="approach-title">Nghĩa rộng</h3>
+              <p className="approach-content">
+                Văn hóa là tổng hợp mọi phương thức sinh hoạt của con người để sinh tồn và phát triển.
+              </p>
+            </div>
+            <div className="approach-card">
+              <div className="approach-icon">🏯</div>
+              <h3 className="approach-title">Nghĩa hẹp</h3>
+              <p className="approach-content">
+                Văn hóa là đời sống tinh thần của xã hội, thuộc kiến trúc thượng tầng.
+              </p>
+            </div>
+            <div className="approach-card">
+              <div className="approach-icon">📚</div>
+              <h3 className="approach-title">Nghĩa hẹp hơn</h3>
+              <p className="approach-content">
+                Văn hóa là các hoạt động giáo dục, trường học, xóa nạn mù chữ (thường dùng khi nói với đồng bào miền núi).
+              </p>
+            </div>
+            <div className="approach-card">
+              <div className="approach-icon">☭</div>
+              <h3 className="approach-title">Theo phương thức sử dụng</h3>
+              <p className="approach-content">
+                Văn hóa thể hiện qua cách con người sử dụng các công cụ sinh hoạt.
+              </p>
+            </div>
           </div>
 
           <div className="large-quote-box">
@@ -57,8 +82,7 @@ const Essence = () => {
             </div>
             <blockquote className="large-quote-text">
               "Vì lẽ sinh tồn cũng như mục đích của cuộc sống, loài người mới sáng tạo và phát minh ra ngôn ngữ, 
-              chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật... Toàn bộ những sáng tạo và 
-              phát minh đó tức là văn hóa."
+              chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, những công cụ cho sinh hoạt hằng ngày về mặc, ăn, ở và các phương thức sử dụng. Toàn bộ những sáng tạo và phát minh đó tức là văn hóa. Văn hóa là sự tổng hợp của mọi phương thức sinh hoạt cùng với biểu hiện của nó mà loài người đã sản sinh ra nhằm thích ứng những nhu cầu đời sống và đòi hỏi của sự sinh tồn."
             </blockquote>
             <p className="quote-author-large">— Hồ Chí Minh</p>
             <div className="quote-context">
@@ -112,6 +136,12 @@ const Essence = () => {
                   với dân tộc khác. Đây là thành quả của quá trình hàng ngàn năm lao động, chiến đấu và giao lưu 
                   của con người Việt Nam.
                 </p>
+                <div className="identity-image">
+                  <img src="/3a.png" alt="Hồ Chí Minh với nhân dân" />
+                  <p className="image-caption">
+                    Bác Hồ nói chuyện với các chiến sĩ Đại đoàn quân Tiên Phong tại đền Giếng, Đền Hùng, Phú Thọ, ngày 19-9-1954.
+                  </p>
+                </div>
                 <p className="identity-subtitle">Bản sắc ấy được nhận diện qua hai tầng lớp quan hệ:</p>
                 <ul className="identity-list">
                   <li>
@@ -134,9 +164,6 @@ const Essence = () => {
                   "Dân ta phải biết sử ta<br />
                   Cho tường gốc tích nước nhà Việt Nam"
                 </blockquote>
-                <p className="quote-source">
-                  Bác Hồ nói chuyện với các chiến sĩ Đại đoàn quân Tiên Phong tại đền Giếng, Đền Hùng, Phú Thọ, ngày 19-9-1954.
-                </p>
               </div>
             </div>
 
@@ -181,21 +208,28 @@ const Essence = () => {
               <div className="dialectical-icon">⚖️</div>
               <h3>C. Mối quan hệ biện chứng</h3>
             </div>
-            <p className="dialectical-intro">
-              Giữa dân tộc và quốc tế có mối quan hệ hữu cơ, trong đó:
-            </p>
-            <div className="dialectical-points">
-              <div className="dialectical-point">
-                <div className="point-icon">🌳</div>
-                <div className="point-content">
-                  <strong>Lấy văn hóa dân tộc làm GỐC:</strong> Đây là điều kiện tiên quyết, là "bộ lọc" để tiếp thu văn hóa bên ngoài.
+            <div className="dialectical-content-wrapper">
+              <div className="dialectical-text">
+                <p className="dialectical-intro">
+                  Giữa dân tộc và quốc tế có mối quan hệ hữu cơ, trong đó:
+                </p>
+                <div className="dialectical-points">
+                  <div className="dialectical-point">
+                    <div className="point-icon">🌳</div>
+                    <div className="point-content">
+                      <strong>Lấy văn hóa dân tộc làm GỐC:</strong> Đây là điều kiện tiên quyết, là "bộ lọc" để tiếp thu văn hóa bên ngoài.
+                    </div>
+                  </div>
+                  <div className="dialectical-point">
+                    <div className="point-icon">🌐</div>
+                    <div className="point-content">
+                      <strong>Lấy văn hóa nhân loại làm yếu tố BỔ SUNG:</strong> Tiếp thu để văn hóa Việt Nam hợp với tinh thần dân chủ, khoa học và hiện đại.
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="dialectical-point">
-                <div className="point-icon">🌐</div>
-                <div className="point-content">
-                  <strong>Lấy văn hóa nhân loại làm yếu tố BỔ SUNG:</strong> Tiếp thu để văn hóa Việt Nam hợp với tinh thần dân chủ, khoa học và hiện đại.
-                </div>
+              <div className="dialectical-image">
+                <img src="/3c.png" alt="Mối quan hệ biện chứng giữa Bản sắc dân tộc và Tinh hoa nhân loại" />
               </div>
             </div>
           </div>

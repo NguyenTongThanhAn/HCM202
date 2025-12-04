@@ -139,14 +139,6 @@ const Home = () => {
           <p className="hero-subtitle">
             Khám phá hệ thống quan điểm sâu sắc về văn hóa của Chủ tịch Hồ Chí Minh
           </p>
-          <div className="hero-buttons">
-            <Link to="/gioi-thieu" className="btn-primary">
-              Bắt đầu khám phá
-            </Link>
-            <Link to="/di-san" className="btn-secondary">
-              Tìm hiểu thêm
-            </Link>
-          </div>
         </div>
         <div className="scroll-indicator">
           <div className="mouse"></div>
