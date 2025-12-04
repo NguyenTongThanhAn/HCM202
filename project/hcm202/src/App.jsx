@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import Introduction from './pages/Introduction'
-import Essence from './pages/Essence'
-import Principles from './pages/Principles'
-import Role from './pages/Role'
-import Development from './pages/Development'
-import Legacy from './pages/Legacy'
-import Quiz from './pages/Quiz'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Introduction from "./pages/Introduction";
+import Essence from "./pages/Essence";
+import Principles from "./pages/Principles";
+import Role from "./pages/Role";
+import Development from "./pages/Development";
+import Legacy from "./pages/Legacy";
+import Quiz from "./pages/Quiz";
+import Crossword from "./pages/Crossword";
+import "./App.css";
 
 function App() {
   return (
@@ -23,10 +24,11 @@ function App() {
           <Route path="/phat-trien" element={<Development />} />
           <Route path="/di-san" element={<Legacy />} />
           <Route path="/quiz" element={<Quiz />} />
+          <Route path="/crossword" element={<Crossword />} />
         </Routes>
       </Layout>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
