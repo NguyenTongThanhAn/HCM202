@@ -16,11 +16,11 @@ const Layout = ({ children }) => {
 
   const navItems = [
     { path: '/', label: 'Trang chủ', icon: '🏠' },
-    { path: '/gioi-thieu', label: 'Giới thiệu', icon: '📚' },
-    { path: '/ban-chat', label: 'Bản chất Văn hóa', icon: '🎭' },
-    { path: '/nguyen-tac', label: 'Nguyên tắc', icon: '🏛️' },
+    { path: '/ban-chat', label: 'Khái niệm và Bản chất', icon: '🎭' },
     { path: '/vai-tro', label: 'Vai trò', icon: '🌟' },
-    { path: '/phat-trien', label: 'Phát triển', icon: '🌱' },
+    { path: '/nguyen-tac', label: 'Nền văn hóa mới', icon: '🏛️' },
+    { path: '/phat-trien', label: 'Vận dụng và Thực tiễn', icon: '🌱' },
+    { path: '/quiz', label: 'Ôn tập Quiz', icon: '📝' },
     { path: '/di-san', label: 'Di sản', icon: '💎' },
   ]
 
@@ -59,8 +59,33 @@ const Layout = ({ children }) => {
 
       <footer className="footer">
         <div className="footer-content">
-          <p>© 2024 Nghiên cứu Tư tưởng Hồ Chí Minh về Văn hóa</p>
-          <p className="footer-subtitle">Giữ gìn và phát huy giá trị văn hóa dân tộc</p>
+          <div className="footer-section">
+            <h3 className="footer-title">DỰ ÁN MÔN HỌC TƯ TƯỞNG HỒ CHÍ MINH</h3>
+            <p className="footer-code">3W_HCM202_07 - Nhóm 3</p>
+          </div>
+          
+          <div className="footer-section">
+            <p className="footer-description">
+              Website là sản phẩm sáng tạo cho môn học HCM202 (Tư tưởng Hồ Chí Minh) tại Đại học FPT. 
+             
+            </p>
+          </div>
+
+          <div className="footer-section">
+            
+            <a 
+              href="https://docs.google.com/document/d/1fd_MGseVe2oF3onYDQyhxOHqatSvnUzu4Exu2bHEhR0/edit?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              📚 Nguồn tài liệu
+            </a>
+          </div>
+
+          <div className="footer-copyright">
+           
+          </div>
         </div>
       </footer>
     </div>

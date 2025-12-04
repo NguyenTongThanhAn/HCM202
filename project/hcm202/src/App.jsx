@@ -7,6 +7,7 @@ import Principles from './pages/Principles'
 import Role from './pages/Role'
 import Development from './pages/Development'
 import Legacy from './pages/Legacy'
+import Quiz from './pages/Quiz'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/vai-tro" element={<Role />} />
           <Route path="/phat-trien" element={<Development />} />
           <Route path="/di-san" element={<Legacy />} />
+          <Route path="/quiz" element={<Quiz />} />
         </Routes>
       </Layout>
     </Router>
