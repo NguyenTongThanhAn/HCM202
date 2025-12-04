@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import ChatbotWidget from './ChatbotWidget'
 import './Layout.css'
 
 const Layout = ({ children }) => {
@@ -88,6 +89,8 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </footer>
+
+      <ChatbotWidget />
     </div>
   )
 }

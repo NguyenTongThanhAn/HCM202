@@ -1,6 +1,6 @@
 import './Page.css'
 
-const Principles = () => {
+const Foundation = () => {
   return (
     <div className="page">
       <div className="page-header">
@@ -10,7 +10,7 @@ const Principles = () => {
       </div>
 
       <div className="page-content">
-        {/* Banner dẫn nhập
+        {/* Banner dẫn nhập */}
         <section className="foundation-intro">
           <div className="foundation-banner">
             <p className="foundation-banner-text">
@@ -20,7 +20,7 @@ const Principles = () => {
               Quan điểm của Hồ Chí Minh là một quá trình vận động và phát triển không ngừng, gắn liền với nhiệm vụ cách mạng của từng thời kỳ.
             </p>
           </div>
-        </section> */}
+        </section>
 
         {/* Giai đoạn 1: Định hình nền móng */}
         <section className="foundation-section">
@@ -83,29 +83,30 @@ const Principles = () => {
               </p>
 
               <div className="foundation-triangle">
-                <div className="triangle-item">
+                <div className="triangle-item triangle-top">
                   <div className="triangle-icon">🏛️</div>
                   <h3 className="triangle-title">TÍNH DÂN TỘC</h3>
                   <p className="triangle-content">Chống lại sự nô dịch, đồng hóa của thực dân; phát huy cốt cách Việt Nam.</p>
                 </div>
-                <div className="triangle-item">
-                  <div className="triangle-icon">🔬</div>
-                  <h3 className="triangle-title">TÍNH KHOA HỌC</h3>
-                  <p className="triangle-content">Chống lại sự ngu dốt, mê tín dị đoan; xây dựng tư duy tiến bộ.</p>
-                </div>
-                <div className="triangle-item">
-                  <div className="triangle-icon">👥</div>
-                  <h3 className="triangle-title">TÍNH ĐẠI CHÚNG</h3>
-                  <p className="triangle-content">Văn hóa phục vụ đông đảo nhân dân, không phải tháp ngà của giới thượng lưu.</p>
+                <div className="triangle-items-bottom">
+                  <div className="triangle-item">
+                    <div className="triangle-icon">🔬</div>
+                    <h3 className="triangle-title">TÍNH KHOA HỌC</h3>
+                    <p className="triangle-content">Chống lại sự ngu dốt, mê tín dị đoan; xây dựng tư duy tiến bộ.</p>
+                  </div>
+                  <div className="triangle-item">
+                    <div className="triangle-icon">👥</div>
+                    <h3 className="triangle-title">TÍNH ĐẠI CHÚNG</h3>
+                    <p className="triangle-content">Văn hóa phục vụ đông đảo nhân dân, không phải tháp ngà của giới thượng lưu.</p>
+                  </div>
                 </div>
               </div>
 
-              {/* <div className="foundation-main-image">
-                <img src="/anh gd2.jpg" alt="Đề cương văn hóa Việt Nam" />
-                <p className="image-caption">
-                  Đề cương văn hóa Việt Nam (1943)
+              <div className="foundation-image-caption">
+                <p>
+                  <em>Tổng bí thư Trường Chinh và chủ tịch Hồ Chí Minh</em>
                 </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </section>
@@ -117,34 +118,32 @@ const Principles = () => {
               <h2 className="foundation-stage-title">3. GIAI ĐOẠN 3: THỜI KỲ XÂY DỰNG CHỦ NGHĨA XÃ HỘI</h2>
             </div>
             <div className="foundation-stage-content">
-              <div className="foundation-content-wrapper">
-                <div className="foundation-socialist">
-                  <p className="foundation-stage-intro">
-                    Khi miền Bắc quá độ lên CNXH, quan điểm xây dựng văn hóa được nâng lên một tầm cao mới:
-                  </p>
-                  <div className="socialist-intro">
-                    <p className="socialist-main-text">
-                      Nền văn hóa có <strong>nội dung Xã hội chủ nghĩa</strong> và <strong>tính chất Dân tộc</strong>.
-                    </p>
-                  </div>
-                  <div className="socialist-content">
-                    <div className="socialist-item">
-                      <h3>Nội dung Xã hội chủ nghĩa</h3>
-                      <p>Tiên tiến, hiện đại, lấy chủ nghĩa Mác - Lênin làm nền tảng, hướng tới công bằng, dân chủ.</p>
-                    </div>
-                    <div className="socialist-item">
-                      <h3>Tính chất Dân tộc</h3>
-                      <p>Luôn biết trân trọng quá khứ, giữ gìn bản sắc và thuần phong mỹ tục.</p>
-                    </div>
-                  </div>
-                </div>
+              <p className="foundation-stage-intro">
+                Khi miền Bắc quá độ lên CNXH, quan điểm xây dựng văn hóa được nâng lên một tầm cao mới:
+              </p>
 
-                <div className="foundation-main-image">
-                  <img src="/namdinh.jpg" alt="Chủ tịch Hồ Chí Minh đến thăm Nhà máy dệt Nam Định" />
-                  <p className="image-caption">
-                    Chủ tịch Hồ Chí Minh đến thăm Nhà máy dệt Nam Định.
+              <div className="foundation-socialist">
+                <div className="socialist-intro">
+                  <p className="socialist-main-text">
+                    Nền văn hóa có <strong>nội dung Xã hội chủ nghĩa</strong> và <strong>tính chất Dân tộc</strong>.
                   </p>
                 </div>
+                <div className="socialist-content">
+                  <div className="socialist-item">
+                    <h3>Nội dung Xã hội chủ nghĩa</h3>
+                    <p>Tiên tiến, hiện đại, lấy chủ nghĩa Mác - Lênin làm nền tảng, hướng tới công bằng, dân chủ.</p>
+                  </div>
+                  <div className="socialist-item">
+                    <h3>Tính chất Dân tộc</h3>
+                    <p>Luôn biết trân trọng quá khứ, giữ gìn bản sắc và thuần phong mỹ tục.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="foundation-image-caption">
+                <p>
+                  <em>Bác Hồ thăm nhà máy dệt may</em>
+                </p>
               </div>
             </div>
           </div>
@@ -171,4 +170,5 @@ const Principles = () => {
   )
 }
 
-export default Principles
+export default Foundation
+
