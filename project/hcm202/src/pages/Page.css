@@ -37,8 +37,9 @@
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   color: #991a14;
   opacity: 0.8;
-  max-width: 800px;
+  max-width: none;
   margin: 0 auto;
+  white-space: nowrap;
 }
 
 .page-content {
@@ -680,7 +681,7 @@
 
 .relation-card:hover .relation-icon,
 .relation-card.active .relation-icon {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.1);
 }
 
 .relation-title {

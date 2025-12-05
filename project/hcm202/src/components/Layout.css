@@ -209,6 +209,96 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: #991a14;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.dropdown-trigger:hover {
+  background-color: #fff3e7;
+  color: #991a14;
+  transform: translateY(-3px);
+}
+
+.dropdown-trigger.active {
+  background-color: #ffd321;
+  color: #991a14;
+  font-weight: 600;
+}
+
+.dropdown-arrow {
+  font-size: 0.6rem;
+  margin-left: 0.25rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 250px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(153, 26, 20, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1001;
+  padding: 0.5rem;
+  border: 1px solid rgba(153, 26, 20, 0.1);
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #991a14;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background-color: #fff3e7;
+  transform: translateY(-2px);
+}
+
+.dropdown-item.active {
+  background-color: #ffd321;
+  font-weight: 600;
+}
+
+.dropdown-item .nav-icon {
+  font-size: 1.1rem;
 }
 
 .nav-link {
@@ -245,7 +335,7 @@
 .nav-link:hover {
   background-color: #fff3e7;
   color: #991a14;
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-3px);
 }
 
 .nav-link:hover .nav-icon {
@@ -254,10 +344,10 @@
 
 @keyframes navIconBounce {
   0%, 100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px) rotate(10deg);
+    transform: translateY(-3px);
   }
 }
 
@@ -401,6 +491,28 @@
 
   .nav-label {
     display: none;
+  }
+
+  .dropdown-trigger .nav-label {
+    display: none;
+  }
+
+  .dropdown-arrow {
+    display: none;
+  }
+
+  .dropdown-menu {
+    min-width: 200px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  .dropdown-menu.show {
+    transform: translateX(-50%) translateY(5px);
+  }
+
+  .dropdown-item .nav-label {
+    display: block;
   }
 
   .main-content {
