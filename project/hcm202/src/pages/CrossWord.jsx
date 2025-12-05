@@ -5,9 +5,9 @@ const Crossword = () => {
   // Từ khóa chính (theo cột dọc): HỒ CHÍ MINH (9 chữ cái)
   const keyword = "HOCHIMINH";
 
-  // Dữ liệu câu hỏi - thiết kế sao cho cột keyword thẳng hàng
+  // Dữ liệu câu hỏi gốc - thiết kế sao cho cột keyword thẳng hàng
   // Tất cả đáp án có ký tự keyword ở vị trí tạo cột thẳng
-  const puzzleData = [
+  const originalPuzzleData = [
     {
       id: 1,
       hint: "Vịnh đẹp nhất Việt Nam, Di sản Thiên nhiên Thế giới ở Quảng Ninh?",
@@ -73,37 +73,64 @@ const Crossword = () => {
     },
   ];
 
+  // Xáo trộn dữ liệu khi component mount
+  const [puzzleData, setPuzzleData] = useState([]);
+  const [shuffledIndices, setShuffledIndices] = useState([]);
+
+  useEffect(() => {
+    // Tạo mảng indices và xáo trộn
+    const indices = originalPuzzleData.map((_, index) => index);
+    const shuffled = [...indices].sort(() => Math.random() - 0.5);
+    setShuffledIndices(shuffled);
+    setPuzzleData(shuffled.map(i => originalPuzzleData[i]));
+  }, []);
+
   // State cho các ô nhập
-  const [userAnswers, setUserAnswers] = useState(
-    puzzleData.map((item) => Array(item.answer.length).fill(""))
-  );
+  const [userAnswers, setUserAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [completedRows, setCompletedRows] = useState([]);
   const [showKeyword, setShowKeyword] = useState(false);
   const [showHint, setShowHint] = useState(null);
   const [allCorrect, setAllCorrect] = useState(false);
-  const [rowResults, setRowResults] = useState(
-    puzzleData.map(() => ({ checked: false, isCorrect: false }))
-  );
-  const [rowRevealed, setRowRevealed] = useState(puzzleData.map(() => false));
+  const [rowResults, setRowResults] = useState([]);
+  const [rowRevealed, setRowRevealed] = useState([]);
   // Trạng thái của các ô keyword (null: chưa nhập, true: đúng, false: sai)
-  const [keywordCellStatus, setKeywordCellStatus] = useState(
-    puzzleData.map(() => null)
-  );
+  const [keywordCellStatus, setKeywordCellStatus] = useState([]);
+  
+  // State cho key input - mảng các ký tự
+  const [keyInput, setKeyInput] = useState(Array(keyword.length).fill(""));
+  const [showKeySuccess, setShowKeySuccess] = useState(false);
+  const [keyInputChecked, setKeyInputChecked] = useState(false);
+  const keyInputRefs = useRef([]);
+
+  // Khởi tạo state khi puzzleData được set
+  useEffect(() => {
+    if (puzzleData.length > 0) {
+      setUserAnswers(puzzleData.map((item) => Array(item.answer.length).fill("")));
+      setRowResults(puzzleData.map(() => ({ checked: false, isCorrect: false })));
+      setRowRevealed(puzzleData.map(() => false));
+      setKeywordCellStatus(puzzleData.map(() => null));
+    }
+  }, [puzzleData]);
 
   const inputRefs = useRef([]);
 
   // Tính toán vị trí căn giữa cho từ khóa
-  const maxLength = Math.max(...puzzleData.map((item) => item.answer.length));
+  const maxLength = puzzleData.length > 0 
+    ? Math.max(...puzzleData.map((item) => item.answer.length))
+    : 0;
   const keywordColumn = Math.floor(maxLength / 2); // Cột giữa cho từ khóa
 
   // Tính offset để các ô chữ từ khóa thẳng hàng
   const getRowOffset = (rowIndex) => {
+    if (!puzzleData[rowIndex]) return 0;
     const keyPos = puzzleData[rowIndex].keyPosition;
     return keywordColumn - keyPos + 1;
   };
 
   const handleInputChange = (rowIndex, cellIndex, value) => {
+    if (!puzzleData[rowIndex] || !userAnswers[rowIndex]) return;
+    
     const newAnswers = [...userAnswers];
     // Chỉ lấy ký tự cuối cùng và chuyển thành chữ hoa
     const char = value.slice(-1).toUpperCase();
@@ -115,19 +142,18 @@ const Crossword = () => {
     if (cellIndex === keyPos) {
       const newKeywordStatus = [...keywordCellStatus];
       if (char) {
-        // Kiểm tra ký tự với từ khóa
-        const expectedChar = keyword[rowIndex];
+        // Kiểm tra ký tự với từ khóa - cần tìm vị trí đúng trong keyword gốc
+        const item = puzzleData[rowIndex];
+        const expectedChar = item.keyChar;
         newKeywordStatus[rowIndex] = char === expectedChar;
       } else {
         newKeywordStatus[rowIndex] = null;
       }
       setKeywordCellStatus(newKeywordStatus);
 
-      // Kiểm tra nếu tất cả ô keyword đều đúng
-      const allKeywordCorrect = newKeywordStatus.every(
-        (status) => status === true
-      );
-      if (allKeywordCorrect) {
+      // Kiểm tra keyword từ các đáp án
+      const currentKeyword = getKeywordFromAnswers();
+      if (currentKeyword.length === keyword.length && currentKeyword === keyword) {
         setAllCorrect(true);
         setShowKeyword(true);
       }
@@ -144,6 +170,8 @@ const Crossword = () => {
   };
 
   const checkRowAnswer = (rowIndex, answers) => {
+    if (!puzzleData[rowIndex] || !answers[rowIndex]) return;
+    
     const userAnswer = answers[rowIndex].join("");
     const isCorrect = userAnswer === puzzleData[rowIndex].answer;
 
@@ -158,8 +186,9 @@ const Crossword = () => {
       }
       setCompletedRows(newCompletedRows);
 
-      // Kiểm tra nếu tất cả đúng
-      if (newCompletedRows.length === puzzleData.length) {
+      // Kiểm tra keyword từ các đáp án
+      const currentKeyword = getKeywordFromAnswers();
+      if (currentKeyword.length === keyword.length && currentKeyword === keyword) {
         setAllCorrect(true);
         setShowKeyword(true);
       }
@@ -167,6 +196,8 @@ const Crossword = () => {
   };
 
   const handleKeyDown = (rowIndex, cellIndex, e) => {
+    if (!puzzleData[rowIndex] || !userAnswers[rowIndex]) return;
+    
     if (
       e.key === "Backspace" &&
       !userAnswers[rowIndex][cellIndex] &&
@@ -230,17 +261,64 @@ const Crossword = () => {
   };
 
   const resetGame = () => {
-    setUserAnswers(
-      puzzleData.map((item) => Array(item.answer.length).fill(""))
-    );
+    // Xáo trộn lại
+    const indices = originalPuzzleData.map((_, index) => index);
+    const shuffled = [...indices].sort(() => Math.random() - 0.5);
+    setShuffledIndices(shuffled);
+    setPuzzleData(shuffled.map(i => originalPuzzleData[i]));
+    
     setShowResults(false);
     setCompletedRows([]);
     setShowKeyword(false);
     setShowHint(null);
     setAllCorrect(false);
-    setRowResults(puzzleData.map(() => ({ checked: false, isCorrect: false })));
-    setRowRevealed(puzzleData.map(() => false));
-    setKeywordCellStatus(puzzleData.map(() => null));
+    setKeyInput(Array(keyword.length).fill(""));
+    setShowKeySuccess(false);
+    setKeyInputChecked(false);
+  };
+
+  const handleKeyInputChange = (index, value) => {
+    const newKeyInput = [...keyInput];
+    // Chỉ lấy ký tự cuối cùng và chuyển thành chữ hoa
+    const char = value.slice(-1).toUpperCase();
+    newKeyInput[index] = char;
+    setKeyInput(newKeyInput);
+    setKeyInputChecked(false);
+
+    // Tự động chuyển sang ô tiếp theo
+    if (char && index < keyword.length - 1) {
+      const nextInput = keyInputRefs.current[index + 1];
+      if (nextInput) nextInput.focus();
+    }
+
+    // Kiểm tra nếu đã điền đủ
+    if (newKeyInput.every(c => c !== "")) {
+      checkKeyInput(newKeyInput);
+    }
+  };
+
+  const checkKeyInput = (inputArray) => {
+    const inputString = inputArray.join("").toUpperCase();
+    setKeyInputChecked(true);
+    
+    if (inputString === keyword) {
+      setShowKeySuccess(true);
+    }
+  };
+
+  const handleKeyInputKeyDown = (index, e) => {
+    if (e.key === "Backspace" && !keyInput[index] && index > 0) {
+      const prevInput = keyInputRefs.current[index - 1];
+      if (prevInput) prevInput.focus();
+    }
+    if (e.key === "ArrowRight" && index < keyword.length - 1) {
+      const nextInput = keyInputRefs.current[index + 1];
+      if (nextInput) nextInput.focus();
+    }
+    if (e.key === "ArrowLeft" && index > 0) {
+      const prevInput = keyInputRefs.current[index - 1];
+      if (prevInput) prevInput.focus();
+    }
   };
 
   const revealAnswer = (rowIndex) => {
@@ -250,6 +328,11 @@ const Crossword = () => {
   };
 
   const getCellClass = (rowIndex, cellIndex) => {
+    // Kiểm tra an toàn
+    if (!puzzleData[rowIndex] || !userAnswers[rowIndex] || !rowResults[rowIndex]) {
+      return "crossword-cell";
+    }
+
     const isKeywordCell = cellIndex === puzzleData[rowIndex].keyPosition - 1;
     let className = "crossword-cell";
 
@@ -263,7 +346,7 @@ const Crossword = () => {
       }
     }
 
-    if (rowResults[rowIndex].checked) {
+    if (rowResults[rowIndex] && rowResults[rowIndex].checked) {
       const isCorrect =
         userAnswers[rowIndex][cellIndex] ===
         puzzleData[rowIndex].answer[cellIndex];
@@ -278,13 +361,26 @@ const Crossword = () => {
   };
 
   // Tính toán từ khóa từ các đáp án
+  // Cần map lại theo thứ tự gốc để keyword đúng
   const getKeywordFromAnswers = () => {
-    return puzzleData
-      .map((item, index) => {
-        const keyPos = item.keyPosition - 1;
-        return userAnswers[index][keyPos] || "";
-      })
-      .join("");
+    if (puzzleData.length === 0 || shuffledIndices.length === 0 || userAnswers.length === 0) return "";
+    
+    // Tạo mảng keyword theo thứ tự gốc (HOCHIMINH)
+    const keywordArray = new Array(keyword.length).fill("");
+    
+    // Map từ originalPuzzleData để giữ đúng thứ tự
+    originalPuzzleData.forEach((originalItem, originalIndex) => {
+      // Tìm item này trong puzzleData đã xáo trộn
+      const shuffledIndex = shuffledIndices.indexOf(originalIndex);
+      if (shuffledIndex !== -1 && userAnswers[shuffledIndex] && Array.isArray(userAnswers[shuffledIndex])) {
+        const keyPos = originalItem.keyPosition - 1;
+        const userAnswer = userAnswers[shuffledIndex];
+        // Vị trí trong keyword = originalIndex (vì keyword được tạo từ thứ tự gốc)
+        keywordArray[originalIndex] = userAnswer[keyPos] || "";
+      }
+    });
+    
+    return keywordArray.join("");
   };
 
   return (
@@ -300,7 +396,7 @@ const Crossword = () => {
 
       <div className="crossword-game">
         <div className="crossword-grid">
-          {puzzleData.map((item, rowIndex) => (
+          {puzzleData.length > 0 && puzzleData.map((item, rowIndex) => (
             <div key={rowIndex} className="crossword-row">
               <div
                 className="row-cells"
@@ -314,7 +410,7 @@ const Crossword = () => {
                     }
                     type="text"
                     className={getCellClass(rowIndex, cellIndex)}
-                    value={userAnswers[rowIndex][cellIndex]}
+                    value={userAnswers[rowIndex]?.[cellIndex] || ""}
                     onChange={(e) =>
                       handleInputChange(rowIndex, cellIndex, e.target.value)
                     }
@@ -324,7 +420,7 @@ const Crossword = () => {
                   />
                 ))}
               </div>
-              {rowResults[rowIndex].checked && (
+              {rowResults[rowIndex]?.checked && (
                 <div className="row-status">
                   {rowResults[rowIndex].isCorrect ? (
                     <span className="status-correct">✅</span>
@@ -354,7 +450,7 @@ const Crossword = () => {
         <div className="hints-panel">
           <h3>📝 Câu Hỏi & Gợi Ý</h3>
           <div className="hints-list">
-            {puzzleData.map((item, index) => (
+            {puzzleData.length > 0 && puzzleData.map((item, index) => (
               <div
                 key={index}
                 className={`hint-item ${
@@ -369,6 +465,54 @@ const Crossword = () => {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Key Input Section */}
+      <div className="key-input-section">
+        <h3>🔑 Nhập từ khóa</h3>
+        <div className="key-input-wrapper">
+          <div className="key-input-cells">
+            {Array(keyword.length).fill("").map((_, index) => {
+              let cellClass = "key-input-cell";
+              
+              if (showKeySuccess) {
+                // Khi đúng hoàn toàn, tất cả các ô đều màu xanh lá
+                cellClass += " key-success";
+              } else if (keyInputChecked) {
+                // Khi đã kiểm tra, hiển thị đúng/sai từng ô
+                if (keyInput[index] === keyword[index]) {
+                  cellClass += " key-correct";
+                } else if (keyInput[index] !== "") {
+                  cellClass += " key-incorrect";
+                }
+              }
+              
+              return (
+                <input
+                  key={index}
+                  ref={(el) => (keyInputRefs.current[index] = el)}
+                  type="text"
+                  className={cellClass}
+                  value={keyInput[index]}
+                  onChange={(e) => handleKeyInputChange(index, e.target.value)}
+                  onKeyDown={(e) => handleKeyInputKeyDown(index, e)}
+                  maxLength={1}
+                  disabled={showKeySuccess}
+                />
+              );
+            })}
+          </div>
+          {showKeySuccess && (
+            <div className="key-success-message">
+              🎉 Chúc mừng! Bạn đã nhập đúng từ khóa!
+            </div>
+          )}
+          {keyInputChecked && !showKeySuccess && (
+            <div className="key-error-message">
+              ❌ Từ khóa không đúng. Vui lòng thử lại!
+            </div>
+          )}
         </div>
       </div>
 
@@ -406,6 +550,39 @@ const Crossword = () => {
             <button
               className="close-keyword-btn"
               onClick={() => setShowKeyword(false)}
+              style={{ marginTop: "1.5rem" }}
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showKeySuccess && (
+        <div className="keyword-reveal">
+          <div className="keyword-animation">
+            <h2>🎉 Chúc mừng!</h2>
+            <p
+              style={{
+                fontSize: "1.2rem",
+                marginBottom: "1.5rem",
+                color: "#666",
+              }}
+            >
+              Bạn đã nhập đúng từ khóa: <strong>HOCHIMINH</strong>
+            </p>
+            <p className="keyword-meaning">
+              Chủ tịch Hồ Chí Minh - Vị lãnh tụ vĩ đại của dân tộc Việt Nam,
+              người đã cống hiến cả cuộc đời cho sự nghiệp giải phóng dân tộc và
+              xây dựng đất nước.
+            </p>
+            <button
+              className="close-keyword-btn"
+              onClick={() => {
+                setShowKeySuccess(false);
+                setKeyInput(Array(keyword.length).fill(""));
+                setKeyInputChecked(false);
+              }}
               style={{ marginTop: "1.5rem" }}
             >
               Đóng
