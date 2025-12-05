@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Page.css";
 import "./Development.css";
 
 const Development = () => {
   const [activeTab, setActiveTab] = useState("timeline");
   const [practiceSubPage, setPracticeSubPage] = useState("positive"); // positive or negative
+  const [activeMedia, setActiveMedia] = useState("podcast"); // podcast, video, presentation
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   const negativeIssues = [
     {
@@ -264,6 +274,30 @@ const Development = () => {
 
   return (
     <div className="page development-page">
+      {/* Video Hero Section */}
+      <div className="video-hero">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+        >
+          <source src="/vid.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <h1 className="hero-title">Vận dụng và Thực tiễn</h1>
+          <p className="hero-subtitle">
+            Tư tưởng Hồ Chí Minh về văn hóa trong thực tiễn cách mạng Việt Nam
+          </p>
+        </div>
+        <button className="mute-toggle" onClick={toggleMute}>
+          {isMuted ? "🔇" : "🔊"}
+        </button>
+      </div>
+
       {/* Tab Navigation */}
       <div className="development-tabs">
         <button
@@ -279,6 +313,13 @@ const Development = () => {
         >
           <span className="tab-icon">🏅</span>
           <span>Thực tiễn</span>
+        </button>
+        <button
+          className={`dev-tab ${activeTab === "other" ? "active" : ""}`}
+          onClick={() => setActiveTab("other")}
+        >
+          <span className="tab-icon">📂</span>
+          <span>Khác</span>
         </button>
       </div>
 
@@ -459,6 +500,86 @@ const Development = () => {
                 </div>
               </>
             )}
+          </div>
+        )}
+
+        {/* Tab Khác */}
+        {activeTab === "other" && (
+          <div className="other-section">
+            <div className="page-header">
+              <div className="page-icon">📂</div>
+              <h1 className="page-title">Tài liệu tham khảo</h1>
+              <p className="page-subtitle">
+                Podcast, Video và Presentation về tư tưởng Hồ Chí Minh
+              </p>
+            </div>
+
+            {/* Media Type Selector */}
+            <div className="media-selector">
+              <div
+                className={`media-card ${
+                  activeMedia === "podcast" ? "active" : ""
+                }`}
+                onClick={() => setActiveMedia("podcast")}
+              >
+                <div className="media-icon">🎙️</div>
+                <h3>Podcast</h3>
+                <p>Nghe các bài phân tích chuyên sâu</p>
+              </div>
+              <div
+                className={`media-card ${
+                  activeMedia === "video" ? "active" : ""
+                }`}
+                onClick={() => setActiveMedia("video")}
+              >
+                <div className="media-icon">🎬</div>
+                <h3>Video</h3>
+                <p>Xem các video tư liệu lịch sử</p>
+              </div>
+              <div
+                className={`media-card ${
+                  activeMedia === "presentation" ? "active" : ""
+                }`}
+                onClick={() => setActiveMedia("presentation")}
+              >
+                <div className="media-icon">📊</div>
+                <h3>Presentation</h3>
+                <p>Slide thuyết trình tổng hợp</p>
+              </div>
+            </div>
+
+            {/* Media Content */}
+            <div className="media-content">
+              {activeMedia === "podcast" && (
+                <div className="podcast-section">
+                  <h2>🎙️ Podcast</h2>
+                  <div className="media-placeholder">
+                    <p>Nội dung Podcast sẽ được cập nhật tại đây</p>
+                    {/* Thêm embed podcast vào đây */}
+                  </div>
+                </div>
+              )}
+
+              {activeMedia === "video" && (
+                <div className="video-section">
+                  <h2>🎬 Video</h2>
+                  <div className="media-placeholder">
+                    <p>Nội dung Video sẽ được cập nhật tại đây</p>
+                    {/* Thêm embed video vào đây */}
+                  </div>
+                </div>
+              )}
+
+              {activeMedia === "presentation" && (
+                <div className="presentation-section">
+                  <h2>📊 Presentation</h2>
+                  <div className="media-placeholder">
+                    <p>Nội dung Presentation sẽ được cập nhật tại đây</p>
+                    {/* Thêm embed presentation vào đây */}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

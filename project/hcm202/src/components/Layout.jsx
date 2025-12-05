@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
     { path: "/quiz", label: "Ôn tập Quiz", icon: "📝" },
     { path: "/crossword", label: "Game", icon: "🧩" },
     { path: "/di-san", label: "Di sản", icon: "💎" },
+    { path: "/khac", label: "Khác", icon: "📂" },
   ];
 
   const isLessonActive = lessonItems.some(

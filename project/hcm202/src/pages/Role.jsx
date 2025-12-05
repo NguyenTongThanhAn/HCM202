@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Page.css";
 
 const Role = () => {
@@ -299,6 +300,17 @@ const Role = () => {
             </div>
           </div>
         </section>
+
+        <div className="page-navigation">
+          <Link to="/ban-chat" className="prev-page-link">
+            <span className="nav-arrow">←</span>
+            <span>Khái niệm và Bản chất</span>
+          </Link>
+          <Link to="/nguyen-tac" className="next-page-link">
+            <span>Tiếp theo: Nền Văn Hóa Mới</span>
+            <span className="nav-arrow">→</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

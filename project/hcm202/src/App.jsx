@@ -9,6 +9,7 @@ import Development from "./pages/Development";
 import Legacy from "./pages/Legacy";
 import Quiz from "./pages/Quiz";
 import CrossWord from "./pages/CrossWord";
+import Other from "./pages/Other";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/di-san" element={<Legacy />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/crossword" element={<CrossWord />} />
+          <Route path="/khac" element={<Other />} />
         </Routes>
       </Layout>
     </Router>
