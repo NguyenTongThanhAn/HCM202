@@ -45,6 +45,15 @@
   font-size: 4rem;
   margin-bottom: 1rem;
   animation: bounce 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #991a14;
+}
+
+.quiz-header .page-icon svg {
+  width: 64px;
+  height: 64px;
 }
 
 .quiz-header .page-title {
@@ -130,6 +139,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-reset svg {
+  width: 18px;
+  height: 18px;
 }
 
 .btn-reset:hover {
@@ -280,6 +297,14 @@
   margin-left: auto;
   font-size: 1.5rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.option-check svg,
+.option-cross svg {
+  width: 20px;
+  height: 20px;
 }
 
 .option-check {
@@ -318,6 +343,11 @@
   font-size: 2rem;
   font-weight: bold;
   flex-shrink: 0;
+}
+
+.result-icon svg {
+  width: 32px;
+  height: 32px;
 }
 
 .result-icon.correct {
@@ -537,6 +567,13 @@
   right: 2px;
   font-size: 0.7rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.nav-status svg {
+  width: 14px;
+  height: 14px;
 }
 
 @keyframes fadeInUp {
@@ -602,6 +639,14 @@
   font-size: 4rem;
   margin-bottom: 1rem;
   animation: bounce 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon svg {
+  width: 64px;
+  height: 64px;
 }
 
 .modal-title {

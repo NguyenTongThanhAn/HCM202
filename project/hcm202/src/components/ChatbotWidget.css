@@ -20,6 +20,12 @@
   border: 2px solid #ffd321;
 }
 
+.chatbot-toggle-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .chatbot-toggle-button:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 25px rgba(153, 26, 20, 0.5);
@@ -162,11 +168,18 @@
   flex-shrink: 0;
   background: #fff3e7;
   border: 2px solid #ffd321;
+  color: #991a14;
+}
+
+.chatbot-message-avatar svg {
+  width: 18px;
+  height: 18px;
 }
 
 .chatbot-message.user .chatbot-message-avatar {
   background: linear-gradient(135deg, #991a14 0%, #7a1510 100%);
   border-color: #991a14;
+  color: #ffffff;
 }
 
 .chatbot-message-content {

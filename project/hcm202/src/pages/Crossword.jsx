@@ -356,6 +356,9 @@ const Crossword = () => {
                   </span>
                 ))}
             </div>
+            <p className="keyword-progress">
+              Đã điền: {getKeywordCharCount()}/{puzzleData.length} ký tự
+            </p>
 
             {isKeywordComplete ? (
               <button
@@ -366,14 +369,20 @@ const Crossword = () => {
               </button>
             ) : (
               <button className="reveal-keyword-btn disabled" disabled>
-                🔒 Điền đủ {puzzleData.length} ký tự để xem đáp án
+                Điền đủ {puzzleData.length} ký tự để xem đáp án
               </button>
+            )}
+
+            {completedRows.length > 0 && (
+              <p className="progress-message" style={{ marginTop: "1rem" }}>
+                ✅ {completedRows.length}/{puzzleData.length} câu đúng
+              </p>
             )}
           </div>
         </div>
 
         <div className="hints-panel">
-          <h3>📝 Câu Hỏi & Gợi Ý</h3>
+          <h3>Câu Hỏi</h3>
           <div className="hints-list">
             {puzzleData.map((item, index) => (
               <div
@@ -437,7 +446,7 @@ const Crossword = () => {
 
       <div className="crossword-actions">
         <button className="reset-btn" onClick={resetGame}>
-          🔄 Chơi lại
+          Chơi lại
         </button>
       </div>
     </div>

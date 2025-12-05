@@ -6,9 +6,10 @@ import Essence from "./pages/Essence";
 import Principles from "./pages/Principles";
 import Role from "./pages/Role";
 import Development from "./pages/Development";
-import Legacy from "./pages/Legacy";
+
 import Quiz from "./pages/Quiz";
 import Crossword from "./pages/Crossword";
+import Heritage from "./pages/Heritage";
 import "./App.css";
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
           <Route path="/nguyen-tac" element={<Principles />} />
           <Route path="/vai-tro" element={<Role />} />
           <Route path="/phat-trien" element={<Development />} />
-          <Route path="/di-san" element={<Legacy />} />
+
+          <Route path="/di-san" element={<Heritage />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/crossword" element={<Crossword />} />
         </Routes>

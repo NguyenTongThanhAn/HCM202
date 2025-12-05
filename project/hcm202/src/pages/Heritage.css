@@ -1,0 +1,257 @@
+.heritage-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff3e7 0%, #ffffff 100%);
+  padding: 2rem;
+}
+
+.heritage-header {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.heritage-header .page-icon {
+  margin-bottom: 1rem;
+}
+
+.heritage-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #991a14;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.heritage-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #991a14;
+  opacity: 0.8;
+}
+
+/* Filter Buttons */
+.heritage-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #ffd321;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #991a14;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(153, 26, 20, 0.1);
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(153, 26, 20, 0.2);
+  border-color: #991a14;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #991a14 0%, #7a1510 100%);
+  color: #ffffff;
+  border-color: #991a14;
+}
+
+.filter-btn.active .filter-icon {
+  transform: scale(1.1);
+}
+
+.filter-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.filter-label {
+  white-space: nowrap;
+}
+
+.heritage-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Section Styling */
+.heritage-section {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd321;
+}
+
+.section-icon {
+  font-size: 2.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #991a14;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Subsection Styling */
+.subsection {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.subsection-title {
+  font-size: 1.3rem;
+  color: #991a14;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid #ffd321;
+}
+
+.subsection-title.urgent {
+  border-left-color: #dc3545;
+  color: #dc3545;
+}
+
+/* Heritage Grid */
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Heritage Card */
+.heritage-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(153, 26, 20, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.heritage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(153, 26, 20, 0.2);
+  border-color: #ffd321;
+}
+
+.heritage-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.heritage-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.heritage-card:hover .heritage-image {
+  transform: scale(1.1);
+}
+
+.heritage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(153, 26, 20, 0.3) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.heritage-card:hover .heritage-overlay {
+  opacity: 1;
+}
+
+.heritage-info {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #ffffff 0%, #fff3e7 100%);
+}
+
+.heritage-name {
+  font-size: 1rem;
+  color: #991a14;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder styling */
+.heritage-image[src*="placeholder"] {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heritage-page {
+    padding: 1rem;
+  }
+
+  .heritage-header {
+    padding: 2rem 1rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .heritage-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .heritage-image-wrapper {
+    height: 160px;
+  }
+
+  .subsection-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heritage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+}
