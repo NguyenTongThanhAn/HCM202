@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "./Crossword.css";
+import "./CrossWord.css";
 
 const Crossword = () => {
   // Từ khóa chính (theo cột dọc): HỒ CHÍ MINH (9 chữ cái)
