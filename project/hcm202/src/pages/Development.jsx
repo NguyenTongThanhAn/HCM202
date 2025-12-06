@@ -483,6 +483,49 @@ const Development = () => {
                   </div>
                 </div>
 
+                {/* Giải pháp Section */}
+                <div className="solutions-section">
+                  <h2 className="solutions-title">💡 Giải pháp khắc phục</h2>
+                  <div className="solutions-grid">
+                    <div className="solution-card" style={{"--solution-color": "#3498db"}}>
+                      <div className="solution-icon">⚖️</div>
+                      <h3>PHÁP LUẬT & THỂ CHẾ</h3>
+                      <p className="solution-tag">Minh bạch</p>
+                      <ul>
+                        <li>Áp dụng chuyển đổi số để công khai, minh bạch tài chính (như công khai sao kê MTTQ).</li>
+                        <li>Chế tài xử phạt nghiêm khắc hành vi lừa đảo, tin giả và bôi nhọ trên không gian mạng.</li>
+                      </ul>
+                    </div>
+                    <div className="solution-card" style={{"--solution-color": "#27ae60"}}>
+                      <div className="solution-icon">🌱</div>
+                      <h3>GIÁO DỤC</h3>
+                      <p className="solution-tag">Gốc rễ</p>
+                      <ul>
+                        <li>Giáo dục "Công dân số": Dạy tư duy phản biện để phân biệt thật - giả.</li>
+                        <li>Giáo dục Cảm xúc (EQ): Đề cao lòng trắc ẩn và sự tử tế thực tế hơn là tương tác ảo.</li>
+                      </ul>
+                    </div>
+                    <div className="solution-card" style={{"--solution-color": "#e67e22"}}>
+                      <div className="solution-icon">📢</div>
+                      <h3>TRUYỀN THÔNG</h3>
+                      <p className="solution-tag">Định hướng</p>
+                      <ul>
+                        <li>Chiến lược "Lấy cái đẹp dẹp cái xấu": Ngừng lăng xê các hiện tượng mạng lệch chuẩn.</li>
+                        <li>Tôn vinh những giá trị thật, con người thật và lối sống cống hiến.</li>
+                      </ul>
+                    </div>
+                    <div className="solution-card" style={{"--solution-color": "#9b59b6"}}>
+                      <div className="solution-icon">👤</div>
+                      <h3>CÁ NHÂN</h3>
+                      <p className="solution-tag">Tự tu dưỡng</p>
+                      <ul>
+                        <li>"Tự soi, tự sửa" theo chuẩn mực Cần - Kiệm - Liêm - Chính.</li>
+                        <li>Sống thật (Authenticity): Hạnh phúc đến từ trải nghiệm nội tại, không phải từ sự trầm trồ của người khác.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Back button */}
                 <div className="subpage-navigation">
                   <button
